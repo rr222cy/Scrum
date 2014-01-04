@@ -1,3 +1,8 @@
+<%
+If Session("UserOnline")="True" Then
+Response.Redirect("overview.asp?page=overview")
+End If
+%>
 <!DOCTYPE html>
 <html>
 <% Server.Execute("header.asp") %>
@@ -19,12 +24,14 @@
                 </section>
                 <section>
                     <h3>Vänligen logga in</h3>
-                        <form action="Login.asp" method="post">
-                            E-post:<br />
-                            <input type="text" size="35" name="email" /><br />
-                            Lösenord:<br />
-                            <input type="password" size="35" name="password" /><br />
-                            <input type="submit" value="Logga in" />
+                        <form name="LoginForm" action="editMember.asp?page=runUpdateMember" method="post">
+                            <fieldset>
+                                <label class="leftalign" for="email">E-post:</label><br />
+                                <input type="email" name="email" id="email" size="45" required><br />
+                                <label class="leftalign" for="password">Lösenord:</label><br />
+                                <input type="password" name="password" id="password" size="45" required><br />
+                            </fieldset>                                                    
+                            <input type="submit" name="Submit" id="Submit" value="Logga in">
                         </form>
                 </section>
             </main>
