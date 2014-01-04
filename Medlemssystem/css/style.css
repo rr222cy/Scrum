@@ -46,9 +46,16 @@ main {
     padding: 1%;
 }
 
-section { 
+section {
+    max-width: 680px;
     margin: 0px auto;
-    padding: 4% 2% 4% 3%;
+    padding: 3% 2% 4% 3%;
+}
+
+nav {
+    width: 200px;
+    float: right;
+    padding: 3% 2% 4% 3%;
 }
 
 footer {
@@ -87,8 +94,34 @@ h3 {
 
 /* Link settings */
 
-a {
-    color: #cacaca;
+
+a:link {
+    color: #3580a7;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #3580a7;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #66afd5;
+    text-decoration: underline;
+}
+
+a:active {
+    color: #66afd5;
+    text-decoration: underline;
+}
+
+a:focus {
+    color: #66afd5;
+    text-decoration: underline;
+}
+
+.activeMenu {
+    color: #000000;
 }
 
 
@@ -98,4 +131,10 @@ a {
 input {
     padding: 1%;
 }
-    
+
+
+/* Other */
+
+.leftFloat {
+    float: left;
+}
