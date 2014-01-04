@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Översikt - Medlemshanteraren 1.0</title>
-        <link rel="stylesheet" href="css/style.css">
-    </head>
+<% Server.Execute("header.asp") %>
     <body>
         <div id="container">
             
@@ -18,9 +14,7 @@
                 </section>
             </main>
             
-            <footer>
-                <p>Copyright &copy; 2014 Medlemshanteraren</p>
-            </footer>
+            <% Server.Execute("footer.asp") %>
         </div>
     </body>
 </html>

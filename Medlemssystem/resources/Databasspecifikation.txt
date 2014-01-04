@@ -1,0 +1,13 @@
+108225-medlemssystem
+	tblUsers
+		userID (primary) - int
+		userFirstName
+		userLastName
+		userTelephone
+	tblAdmin
+		adminID (primary)
+		adminFirstName
+		adminLastName
+		adminTelephone
+		adminEmail
+		adminPassword
