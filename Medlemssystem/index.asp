@@ -26,7 +26,7 @@
                             <input type="password" size="35" name="password" /><br />
                             <input type="submit" value="Logga in" />
                         </form>
-                <section>
+                </section>
             </main>
             
             <% Server.Execute("footer.asp") %>
