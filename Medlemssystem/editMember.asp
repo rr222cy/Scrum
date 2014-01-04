@@ -5,14 +5,17 @@
         <div id="container">
             
             <header>
-                <h1>Medlemshanteraren 1.0</h1>
+                <h1>Redigera uppgifter om medlem</h1>
             </header>
             
             <main>
-                <section>
-                    <h2>*** medlem</h2>
-                        
+                <% Server.Execute("menu.asp") %>
+                <section class="leftFloat">
+                    <h2>Redigera medlemsuppgifter</h2>
+                    <p>Välj en aktivitet i listan till höger, nedan listas ett urval av de medlemmar som finns registrerade i
+                    Medlemshanteraren 1.0.</p>
                 </section>
+                <div style="clear: both;"></div>
             </main>
             
             <% Server.Execute("footer.asp") %>
