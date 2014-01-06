@@ -187,6 +187,10 @@ label.leftalignshort
     margin-right: -22%;
 }
 
+.standardFormDiv {
+    width: 600px;
+}
+
 
 /* Tables settings */
 

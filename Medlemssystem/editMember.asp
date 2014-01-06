@@ -22,18 +22,20 @@ End If
                     <% If Request.QueryString("action")="memberAdded" Then %>
                     <p class="red">Medlemmen har nu lagts till i registret!</p>
                     <% End If %>
-                    <form name="MemberAddForm" action="editMember.asp?page=runAddMember" method="post">
-                        <fieldset>
-                            <legend>Lägg till medlem</legend>
-                            <label class="leftalign" for="firstName">Förnamn:</label><br />
-                                <input type="text" name="firstName" id="firstName" size="45" required><br />
-                            <label class="leftalign" for="lastName">Efternamn:</label><br />
-                                <input type="text" name="lastName" id="lastName" size="45" required><br />
-                            <label class="leftalign" for="telephone">Telefonnummer:</label><br />
-                                <input type="tel" name="telephone" id="telephone" size="45" required><br />
-                        </fieldset>                                                    
-                        <input type="submit" name="Submit" id="Submit" value="Lägg till medlem">
-                    </form>
+                    <div class="standardFormDiv">
+                        <form name="MemberAddForm" action="editMember.asp?page=runAddMember" method="post">
+                            <fieldset>
+                                <legend>Lägg till medlem</legend>
+                                <label class="leftalign" for="firstName">Förnamn:</label><br />
+                                    <input type="text" name="firstName" id="firstName"  required><br />
+                                <label class="leftalign" for="lastName">Efternamn:</label><br />
+                                    <input type="text" name="lastName" id="lastName"  required><br />
+                                <label class="leftalign" for="telephone">Telefonnummer:</label><br />
+                                    <input type="tel" name="telephone" id="telephone"  required><br />
+                            </fieldset>                                                    
+                            <input type="submit" name="Submit" id="Submit" value="Lägg till medlem">
+                        </form>
+                    </div>
                         
                     <% ElseIf Request.QueryString("page")="editMember" Then %>
                     <h2>Redigera medlemsuppgifter</h2>
