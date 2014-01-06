@@ -6,30 +6,36 @@
                         <li><a href="editMember.asp?page=newMember">Lägg till medlem</a></li>
                         <li><a href="allMembers.asp?page=allMembers">Alla medlemmar</a></li>
                         <li><a href="editAdmin.asp?page=editAdmin">Hantera administratörer</a></li>
+                        <li><a href="logout.asp">Logga ut</a></li>
+                            
                             
                         <% ElseIf Request.QueryString("page")="newMember" Then %>
                         <li><a href="overview.asp?page=overview">Översikt</a></li>
                         <li>>> <a href="editMember.asp?page=newMember">Lägg till medlem</a></li>
                         <li><a href="allMembers.asp?page=allMembers">Alla medlemmar</a></li>
                         <li><a href="editAdmin.asp?page=editAdmin">Hantera administratörer</a></li>
+                        <li><a href="logout.asp">Logga ut</a></li>
                             
                         <% ElseIf Request.QueryString("page")="allMembers" Then %>
                         <li><a href="overview.asp?page=overview">Översikt</a></li>
                         <li><a href="editMember.asp?page=newMember">Lägg till medlem</a></li>
                         <li>>> <a href="allMembers.asp?page=allMembers">Alla medlemmar</a></li>
                         <li><a href="editAdmin.asp?page=editAdmin">Hantera administratörer</a></li>
+                        <li><a href="logout.asp">Logga ut</a></li>
                             
                         <% ElseIf Request.QueryString("page")="editAdmin" Then %>
                         <li><a href="overview.asp?page=overview">Översikt</a></li>
                         <li><a href="editMember.asp?page=newMember">Lägg till medlem</a></li>
                         <li><a href="allMembers.asp?page=allMembers">Alla medlemmar</a></li>
                         <li>>> <a href="editAdmin.asp?page=editAdmin">Hantera administratörer</a></li>
+                        <li><a href="logout.asp">Logga ut</a></li>
                             
                         <% Else %>
                         <li><a href="overview.asp?page=overview">Översikt</a></li>
                         <li><a href="editMember.asp?page=newMember">Lägg till medlem</a></li>
                         <li><a href="allMembers.asp?page=allMembers">Alla medlemmar</a></li>
                         <li><a href="editAdmin.asp?page=editAdmin">Hantera administratörer</a></li>
+                        <li><a href="logout.asp">Logga ut</a></li>
                             
                         <% End If %>
                         

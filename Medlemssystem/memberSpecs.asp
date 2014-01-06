@@ -1,8 +1,7 @@
 <%
-'If Session("UserOnline")="" Then
-'Response.Redirect("index.asp")
-'End If
-'
+If Session("UserOnline")="" Then
+Response.Redirect("index.asp")
+End If
 %>
 <!DOCTYPE html>
 <html>

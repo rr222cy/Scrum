@@ -24,7 +24,7 @@ End If
                 </section>
                 <section>
                     <h3>Vänligen logga in</h3>
-                        <form name="LoginForm" action="editMember.asp?page=runUpdateMember" method="post">
+                        <form name="LoginForm" action="login.asp" method="post">
                             <fieldset>
                                 <label class="leftalign" for="email">E-post:</label><br />
                                 <input type="email" name="email" id="email" size="45" required><br />
@@ -33,6 +33,7 @@ End If
                             </fieldset>                                                    
                             <input type="submit" name="Submit" id="Submit" value="Logga in">
                         </form>
+                    <p><%=Session("FelMess")%></p>
                 </section>
             </main>
             
