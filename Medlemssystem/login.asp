@@ -1,10 +1,13 @@
 <!-- #include file = "includes/dbConnectionString.asp" -->
+<!-- #include file = "includes/kryptering/sha256.asp" -->
     
 <%
 ' Kollar om användaren finns, samt kollar om lösen + salt stämmer
 '
    
    adminEmail = antiSqlInjection(request.form("email"))
+   'adminPassword = sha256(antiSqlInjection(request.form("password")))
+    '
    adminPassword = antiSqlInjection(request.form("password"))
   
    strSQL="SELECT * From tblAdmin where adminEmail='"& adminEmail &"' AND adminPassword='"& adminPassword &"'"
@@ -14,7 +17,7 @@
 	  
 ' Om några uppgifter inte stämmer
 '
-   Session("FelMess")="<font color='Red'>Inloggningen misslyckades, kontrollera så du skrev in rätt användarnamn och lösenord!</font><br />"
+   Session("FelMess")="<span class='red'>Inloggningen misslyckades, kontrollera så du skrev in rätt användarnamn och lösenord!</span><br />"
    Response.Redirect("index.asp")
    Else
 	  
