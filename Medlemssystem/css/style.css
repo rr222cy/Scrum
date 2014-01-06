@@ -200,7 +200,7 @@ table, th, td
     border-collapse: collapse;
     border: 1px solid;
     border-color: #353535;
-    padding: 5px;
+    padding: 4px;
 }
 
 th, thead, tfoot 
@@ -209,6 +209,10 @@ th, thead, tfoot
     color: #f4f4f4;
     height: 30px;
     padding: 2%;
+}
+
+.tableCenter {
+    text-align: center;
 }
 
 

@@ -45,11 +45,14 @@ If not objRS.EOF then
 Do until objRS.EOF
 %>
                             <tr>
-                                <td rowspan="1"><a href="memberSpecs.asp?page=showSpecs&userID=<%=objRS("userID")%>"><%=objRS("userID")%></a></td>
+                                <td rowspan="1" class="tableCenter"><a href="memberSpecs.asp?page=showSpecs&userID=<%=objRS("userID")%>"><%=objRS("userID")%></a></td>
                                 <td><%=objRS("userFirstName")%></td>
                                 <td><%=objRS("userLastName")%></td>
                                 <td><%=objRS("userTelephone")%></td>
-                                <td><a class="deleteLink" href="editMember.asp" ><img src="pics/rubbish-bin.png" border="0" width="16" height="16" alt="Papperskorg" /></a></td>
+                                <td class="tableCenter">
+                                    <a class="deleteLink" href="editMember.asp"><img src="pics/rubbish-bin.png" border="0" width="16" height="16" alt="Papperskorg" /></a>
+                                    <a href="editMember.asp"><img src="pics/edit-file-icon.png" border="0" width="16" height="16" alt="Papper och penna" /></a>
+                                </td>
                             </tr>
 <%
 objRS.MoveNext
