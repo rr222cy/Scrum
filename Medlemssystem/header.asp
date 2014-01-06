@@ -8,4 +8,5 @@
     <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link href='http://fonts.googleapis.com/css?family=Quattrocento:400,700|' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/scripts.js"></script>
 </head>

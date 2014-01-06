@@ -40,23 +40,23 @@ End If
 <%
 strSQL="SELECT * FROM tblUsers order by rand() LIMIT 5"
 Set objRS = Connect.Execute(strSQL)
+
+If not objRS.EOF then
+Do until objRS.EOF
 %>
-    <%
-	If not objRS.EOF then
-    Do until objRS.EOF
-	%>
                             <tr>
-                                <td rowspan="1"><%=objRS("userID")%></td>
+                                <td rowspan="1"><a href="memberSpecs.asp?page=showSpecs&userID=<%=objRS("userID")%>"><%=objRS("userID")%></a></td>
                                 <td><%=objRS("userFirstName")%></td>
                                 <td><%=objRS("userLastName")%></td>
                                 <td><%=objRS("userTelephone")%></td>
+                                <td><a class="deleteLink" href="editMember.asp" ><img src="pics/rubbish-bin.png" border="0" width="16" height="16" alt="Papperskorg" /></a></td>
                             </tr>
-              <%
-    objRS.MoveNext
-    Loop
-    End If
+<%
+objRS.MoveNext
+Loop
+End If
 objRS.Close : Set objRS = Nothing
-    %>
+%>
                         </tbody>
                     </table>
                 </section>
