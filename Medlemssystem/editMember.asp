@@ -77,8 +77,21 @@ Set Connect = Nothing
 
 Response.Redirect("?page=newMember&action=memberAdded")
 
-End If
 
 ' Kod för att uppdatera medlemsuppgifter
+   
 ' Kod för att radera medlem ur registret
+ElseIf Request.Querystring("page")="runDeleteMember" Then
+
+strSQL="DELETE FROM tblUsers Where userID="& clng(Request.Querystring("userID")) &""
+Connect.Execute(strSQL)
+
+' Stänger DB koppling
+Connect.Close
+Set Connect = Nothing 
+
+Refer = request.servervariables("http_referer")	   
+Response.Redirect(Refer)
+ 
+End If
 %>
