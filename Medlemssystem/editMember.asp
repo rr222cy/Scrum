@@ -39,15 +39,21 @@ End If
                         
                     <% ElseIf Request.QueryString("page")="editMember" Then %>
                     <h2>Redigera medlemsuppgifter</h2>
+<%
+strSQL="SELECT * FROM tblUsers Where userID="& clng(Request.Querystring("userID")) &""
+Set objRS = Connect.Execute(strSQL)
+%>
                     <form name="MemberEditForm" action="editMember.asp?page=runUpdateMember" method="post">
                     <fieldset>
-                        <legend>Redigera xyz uppgifter</legend>
+                        <legend>Redigera <%=objRS("userFirstName")%> <%=objRS("userLastName")%>:s uppgifter</legend>
+                        <label class="leftalign" for="userID">MedlemsID:</label><br />
+                            <input type="text" name="userID" id="userID" size="10" value="<%=objRS("userID")%>" disabled required><br />
                         <label class="leftalign" for="firstName">Förnamn:</label><br />
-                            <input type="text" name="firstName" id="firstName" size="45" required><br />
+                            <input type="text" name="firstName" id="firstName" size="45" value="<%=objRS("userFirstName")%>" required><br />
                         <label class="leftalign" for="lastName">Efternamn:</label><br />
-                            <input type="text" name="lastName" id="lastName" size="45" required><br />
+                            <input type="text" name="lastName" id="lastName" size="45" value="<%=objRS("userLastName")%>" required><br />
                         <label class="leftalign" for="telephone">Telefonnummer:</label><br />
-                            <input type="tel" name="telephone" id="telephone" size="45" required><br />
+                            <input type="tel" name="telephone" id="telephone" size="45" value="<%=objRS("userTelephone")%>" required><br />
                     </fieldset>                                                    
                     <input type="submit" name="Submit" id="Submit" value="Uppdatera">
                     </form>

@@ -36,7 +36,7 @@ End If
                             </tr>
                         </tfoot>
                         <tbody>
-                    <%
+<%
 strSQL="SELECT * FROM tblUsers order by userID"
 Set objRS = Connect.Execute(strSQL)
 
@@ -50,7 +50,7 @@ Do until objRS.EOF
                                 <td><%=objRS("userTelephone")%></td>
                                 <td class="tableCenter">
                                     <a class="deleteLink" href="editMember.asp?page=runDeleteMember&userID=<%=objRS("userID")%>"><img src="pics/rubbish-bin.png" border="0" width="16" height="16" alt="Papperskorg" /></a>
-                                    <a href="editMember.asp"><img src="pics/edit-file-icon.png" border="0" width="16" height="16" alt="Papper och penna" /></a>
+                                    <a href="editMember.asp?page=editMember&userID=<%=objRS("userID")%>"><img src="pics/edit-file-icon.png" border="0" width="16" height="16" alt="Papper och penna" /></a>
                                 </td>
                             </tr>
 <%
