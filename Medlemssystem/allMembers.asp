@@ -1,3 +1,4 @@
+<!-- #include file = "includes/dbConnectionString.asp" -->
 <%
 If Session("UserOnline")="" Then
 Response.Redirect("index.asp")
@@ -35,19 +36,30 @@ End If
                             </tr>
                         </tfoot>
                         <tbody>
+                    <%
+strSQL="SELECT * FROM tblUsers order by userID"
+Set objRS = Connect.Execute(strSQL)
+
+If not objRS.EOF then
+Do until objRS.EOF
+%>
                             <tr>
-                                <td rowspan="1">1</td>
-                                <td>Robert</td>
-                                <td>Roos</td>
-                                <td>070-2546781</td>
+                                <td rowspan="1" class="tableCenter"><a href="memberSpecs.asp?page=showSpecs&userID=<%=objRS("userID")%>"><%=objRS("userID")%></a></td>
+                                <td><%=objRS("userFirstName")%></td>
+                                <td><%=objRS("userLastName")%></td>
+                                <td><%=objRS("userTelephone")%></td>
+                                <td class="tableCenter">
+                                    <a class="deleteLink" href="editMember.asp"><img src="pics/rubbish-bin.png" border="0" width="16" height="16" alt="Papperskorg" /></a>
+                                    <a href="editMember.asp"><img src="pics/edit-file-icon.png" border="0" width="16" height="16" alt="Papper och penna" /></a>
+                                </td>
                             </tr>
-                            <tr>
-                                <td rowspan="1">2</td>
-                                <td>Eddard</td>
-                                <td>Stark</td>
-                                <td>070-5687412</td>
-                            </tr>
-                        </tbody>
+<%
+objRS.MoveNext
+Loop
+End If
+objRS.Close : Set objRS = Nothing
+%>
+                    </tbody>
                     </table>
                 </section>
                 <div style="clear: both;"></div>

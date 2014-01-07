@@ -11,7 +11,7 @@ End If
         <div id="container">
             
             <header>
-                <h1>Redigera uppgifter om medlem</h1>
+                <h1>Medlemshantering</h1>
             </header>
             
             <main>
