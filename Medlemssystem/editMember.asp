@@ -43,7 +43,7 @@ End If
 strSQL="SELECT * FROM tblUsers Where userID="& clng(Request.Querystring("userID")) &""
 Set objRS = Connect.Execute(strSQL)
 %>
-                    <form name="MemberEditForm" action="editMember.asp?page=runUpdateMember" method="post">
+                    <form name="MemberEditForm" action="editMember.asp?page=runUpdateMember&userID=<%=objRS("userID")%>" method="post">
                     <fieldset>
                         <legend>Redigera <%=objRS("userFirstName")%> <%=objRS("userLastName")%>:s uppgifter</legend>
                         <label class="leftalign" for="userID">MedlemsID:</label><br />
@@ -57,7 +57,8 @@ Set objRS = Connect.Execute(strSQL)
                     </fieldset>                                                    
                     <input type="submit" name="Submit" id="Submit" value="Uppdatera">
                     </form>
-                        
+                    <p><%=Session("felmess")%></p>
+                    <% Session("FelMess")="" %>
                     <% End If %>
                         
                 </section>
@@ -85,6 +86,19 @@ Response.Redirect("?page=newMember&action=memberAdded")
 
 
 ' Kod för att uppdatera medlemsuppgifter
+ElseIf Request.Querystring("page")="runUpdateMember" Then
+strSQL="UPDATE tblUsers SET userFirstName='"& antiSqlInjection(Request.Form("firstName")) &"', userLastName='"& antiSqlInjection(Request.Form("lastName")) &"', userTelephone='"& antiSqlInjection(Request.Form("telephone")) &"' Where userID="& clng(Request.Querystring("userID")) &""
+
+Connect.Execute(strSQL)
+
+' Stänger DB koppling
+Connect.Close
+Set Connect = Nothing
+
+Session("FelMess")="<span class='red'>Medlemmen uppdaterades!</span>"
+ 
+Refer = request.servervariables("http_referer")	   
+Response.Redirect(Refer)
    
 ' Kod för att radera medlem ur registret
 ElseIf Request.Querystring("page")="runDeleteMember" Then
