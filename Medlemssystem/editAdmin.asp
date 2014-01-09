@@ -16,7 +16,11 @@ End If
             
             <main>
                 <% Server.Execute("menu.asp") %>
-                
+<% If Request.Querystring("page")="adminOverview" Then %>
+                <section class="leftFloat">
+                    <h2>Administratörsöversikt</h2>
+                    <p>Nedan listas alla administratörer som finns i registret, du kan snabbt lägga till eller uppdatera en administratör.</p>
+                </section>
                 <section class="leftFloat">
                     <table width="650" border="1">
                         <thead>
@@ -46,8 +50,8 @@ Do until objRS.EOF
                                 <td><%=objRS("adminLastName")%></td>
                                 <td><%=objRS("adminTelephone")%></td>
                                 <td class="tableCenter">
-                                    <a class="deleteLink" href="editAdmin.asp?page=runDeleteMember&userID=<%=objRS("adminID")%>"><img src="pics/rubbish-bin.png" border="0" width="16" height="16" alt="Papperskorg" /></a>
-                                    <a href="editAdmin.asp?page=editMember&userID=<%=objRS("adminID")%>"><img src="pics/edit-file-icon.png" border="0" width="16" height="16" alt="Papper och penna" /></a>
+                                    <a class="deleteLink" href="editAdmin.asp?page=runDeleteMember&adminID=<%=objRS("adminID")%>"><img src="pics/rubbish-bin.png" border="0" width="16" height="16" alt="Papperskorg" /></a>
+                                    <a href="editAdmin.asp?page=editAdmin&adminID=<%=objRS("adminID")%>"><img src="pics/edit-file-icon.png" border="0" width="16" height="16" alt="Papper och penna" /></a>
                                 </td>
                             </tr>
 <%
@@ -59,17 +63,16 @@ objRS.Close : Set objRS = Nothing
                     </tbody>
                     </table>
                 </section>
-                    
+<% ElseIf Request.QueryString("page")="newAdmin" Then %>
                 <section class="leftFloat">
-                    <% If Request.QueryString("page")="newAdmin" Then %>
                     <h2>Lägg till administratör</h2>
                     <% If Request.QueryString("action")="adminAdded" Then %>
-                    <p class="red">Medlemmen har nu lagts till i registret!</p>
+                    <p class="red">Administratören har nu lagts till i registret!</p>
                     <% End If %>
                     <div class="standardFormDiv">
-                        <form name="MemberAddForm" action="editAdmin.asp?page=runAddAdmin" method="post">
+                        <form name="AdminAddForm" action="editAdmin.asp?page=runAddAdmin" method="post">
                             <fieldset>
-                                <legend>Lägg till medlem</legend>
+                                <legend>Lägg till administratör</legend>
                                 <label class="leftalign" for="firstName">Förnamn:</label><br />
                                     <input type="text" name="firstName" id="firstName"  required><br />
                                 <label class="leftalign" for="lastName">Efternamn:</label><br />
@@ -77,27 +80,27 @@ objRS.Close : Set objRS = Nothing
                                 <label class="leftalign" for="telephone">Telefonnummer:</label><br />
                                     <input type="tel" name="telephone" id="telephone"  required><br />
                             </fieldset>                                                    
-                            <input type="submit" name="Submit" id="Submit" value="Lägg till medlem">
+                            <input type="submit" name="Submit" id="Submit" value="Lägg till administratör">
                         </form>
                     </div>
                         
-                    <% ElseIf Request.QueryString("page")="editMember" Then %>
+                    <% ElseIf Request.QueryString("page")="editAdmin" Then %>
                     <h2>Redigera administratör</h2>
 <%
-strSQL="SELECT * FROM tblUsers Where userID="& clng(Request.Querystring("userID")) &""
+strSQL="SELECT * FROM tblAdmin Where adminID="& clng(Request.Querystring("adminID")) &""
 Set objRS = Connect.Execute(strSQL)
 %>
-                    <form name="MemberEditForm" action="editMember.asp?page=runUpdateMember&userID=<%=objRS("userID")%>" method="post">
+                    <form name="AdminEditForm" action="editAdmin.asp?page=runUpdateAdmin&adminID=<%=objRS("adminID")%>" method="post">
                     <fieldset>
-                        <legend>Redigera <%=objRS("userFirstName")%> <%=objRS("userLastName")%>:s uppgifter</legend>
-                        <label class="leftalign" for="userID">MedlemsID:</label><br />
-                            <input type="text" name="userID" id="userID" size="10" value="<%=objRS("userID")%>" disabled required><br />
+                        <legend>Redigera <%=objRS("adminFirstName")%> <%=objRS("adminLastName")%>:s uppgifter</legend>
+                        <label class="leftalign" for="adminID">MedlemsID:</label><br />
+                            <input type="text" name="adminID" id="adminID" size="10" value="<%=objRS("adminID")%>" disabled required><br />
                         <label class="leftalign" for="firstName">Förnamn:</label><br />
-                            <input type="text" name="firstName" id="firstName" size="45" value="<%=objRS("userFirstName")%>" required><br />
+                            <input type="text" name="firstName" id="firstName" size="45" value="<%=objRS("adminFirstName")%>" required><br />
                         <label class="leftalign" for="lastName">Efternamn:</label><br />
-                            <input type="text" name="lastName" id="lastName" size="45" value="<%=objRS("userLastName")%>" required><br />
+                            <input type="text" name="lastName" id="lastName" size="45" value="<%=objRS("adminLastName")%>" required><br />
                         <label class="leftalign" for="telephone">Telefonnummer:</label><br />
-                            <input type="tel" name="telephone" id="telephone" size="45" value="<%=objRS("userTelephone")%>" required><br />
+                            <input type="tel" name="telephone" id="telephone" size="45" value="<%=objRS("adminTelephone")%>" required><br />
                     </fieldset>                                                    
                     <input type="submit" name="Submit" id="Submit" value="Uppdatera">
                     </form>
