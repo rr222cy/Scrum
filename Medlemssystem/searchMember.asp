@@ -11,7 +11,7 @@ End If
         <div id="container">
             
             <header>
-                <h1>Administration</h1>
+                <h1>Sök efter medlem</h1>
             </header>
             
             <main>

@@ -29,11 +29,12 @@ End If
                                 <th>Förnamn</th>
                                 <th>Efternamn</th>
                                 <th>Telefonnummer</th>
+                                <th>E-post</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <td colspan="4">Sida 1 av 10</td>
+                                <td colspan="5"></td>
                             </tr>
                         </tfoot>
                         <tbody>
@@ -45,10 +46,11 @@ If not objRS.EOF then
 Do until objRS.EOF
 %>
                             <tr>
-                                <td rowspan="1" class="tableCenter"><a href="memberSpecs.asp?page=showSpecs&userID=<%=objRS("adminID")%>"><%=objRS("adminID")%></a></td>
+                                <td rowspan="1" class="tableCenter"><a href="adminSpecs.asp?page=showSpecs&userID=<%=objRS("adminID")%>"><%=objRS("adminID")%></a></td>
                                 <td><%=objRS("adminFirstName")%></td>
                                 <td><%=objRS("adminLastName")%></td>
                                 <td><%=objRS("adminTelephone")%></td>
+                                <td><a href="mailto:<%=objRS("adminEmail")%>"><%=objRS("adminEmail")%></a></td>
                                 <td class="tableCenter">
                                     <a class="deleteLink" href="editAdmin.asp?page=runDeleteAdmin&adminID=<%=objRS("adminID")%>"><img src="pics/rubbish-bin.png" border="0" width="16" height="16" alt="Papperskorg" /></a>
                                     <a href="editAdmin.asp?page=editAdmin&adminID=<%=objRS("adminID")%>"><img src="pics/edit-file-icon.png" border="0" width="16" height="16" alt="Papper och penna" /></a>
@@ -101,7 +103,12 @@ Set objRS = Connect.Execute(strSQL)
                         <label class="leftalign" for="lastName">Efternamn:</label><br />
                             <input type="text" name="lastName" id="lastName" size="45" value="<%=objRS("adminLastName")%>" required><br />
                         <label class="leftalign" for="telephone">Telefonnummer:</label><br />
-                            <input type="tel" name="telephone" id="telephone" size="45" value="<%=objRS("adminTelephone")%>" required><br />
+                            <input type="tel" name="telephone" id="telephone" size="45" value="<%=objRS("adminTelephone")%>" required>
+                        <p>&nbsp;</p>
+                        <label class="leftalign" for="email">E-post:</label><br />
+                            <input type="email" name="email" id="email" size="45" value="<%=objRS("adminEmail")%>" required><br />
+                        <label class="leftalign" for="password">Lösenord:</label><br />
+                            <input type="password" name="password" id="password" size="45" value="<%=objRS("adminPassword")%>" required><br /> 
                     </fieldset>                                                    
                     <input type="submit" name="Submit" id="Submit" value="Uppdatera">
                     </form>
@@ -120,7 +127,7 @@ Set objRS = Connect.Execute(strSQL)
 <%   
 ' Kod för att uppdatera administratörsuppgifter
 If Request.Querystring("page")="runUpdateAdmin" Then
-strSQL="UPDATE tblAdmin SET adminFirstName='"& antiSqlInjection(Request.Form("firstName")) &"', adminLastName='"& antiSqlInjection(Request.Form("lastName")) &"', adminTelephone='"& antiSqlInjection(Request.Form("telephone")) &"' Where adminID="& clng(Request.Querystring("adminID")) &""
+strSQL="UPDATE tblAdmin SET adminFirstName='"& antiSqlInjection(Request.Form("firstName")) &"', adminLastName='"& antiSqlInjection(Request.Form("lastName")) &"', adminTelephone='"& antiSqlInjection(Request.Form("telephone")) &"', adminEmail='"& antiSqlInjection(Request.Form("email")) &"' Where adminID="& clng(Request.Querystring("adminID")) &""
 
 Connect.Execute(strSQL)
 

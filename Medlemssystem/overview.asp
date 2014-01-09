@@ -11,7 +11,7 @@ End If
         <div id="container">
             
             <header>
-                <h1>Administration</h1>
+                <h1>Administrationsöversikten</h1>
             </header>
             
             <main>
@@ -33,12 +33,12 @@ End If
                         </thead>
                         <tfoot>
                             <tr>
-                                <td colspan="4">Sida 1 av 10</td>
+                                <td colspan="4"></td>
                             </tr>
                         </tfoot>
                         <tbody>
 <%
-strSQL="SELECT * FROM tblUsers order by rand() LIMIT 6"
+strSQL="SELECT * FROM tblUsers order by rand() LIMIT 8"
 Set objRS = Connect.Execute(strSQL)
 
 If not objRS.EOF then

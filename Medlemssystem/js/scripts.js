@@ -1,3 +1,4 @@
+/*jslint browser:true*/
 "use strict";
 
 var memberSystemFunctions = {
@@ -6,7 +7,10 @@ var memberSystemFunctions = {
         var elems = document.getElementsByClassName('deleteLink');
         var confirmIt = function (e) 
         {
-            if (!confirm('Vill du ta ta bort denna post?')) e.preventDefault();
+            if (!confirm('Vill du ta ta bort denna post?'))
+            {
+                e.preventDefault();
+            }
         };
         
         for (var i = 0, l = elems.length; i < l; i++) {

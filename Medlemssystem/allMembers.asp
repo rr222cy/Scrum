@@ -32,7 +32,7 @@ End If
                         </thead>
                         <tfoot>
                             <tr>
-                                <td colspan="4">Sida 1 av 10</td>
+                                <td colspan="4"></td>
                             </tr>
                         </tfoot>
                         <tbody>
