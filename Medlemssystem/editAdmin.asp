@@ -83,8 +83,9 @@ objRS.Close : Set objRS = Nothing
                             <input type="submit" name="Submit" id="Submit" value="Lägg till administratör">
                         </form>
                     </div>
-                        
-                    <% ElseIf Request.QueryString("page")="editAdmin" Then %>
+                </section>        
+<% ElseIf Request.QueryString("page")="editAdmin" Then %>
+                <section class="leftFloat">
                     <h2>Redigera administratör</h2>
 <%
 strSQL="SELECT * FROM tblAdmin Where adminID="& clng(Request.Querystring("adminID")) &""
@@ -116,3 +117,20 @@ Set objRS = Connect.Execute(strSQL)
         </div>
     </body>
 </html>
+<%   
+' Kod för att uppdatera administratörsuppgifter
+If Request.Querystring("page")="runUpdateAdmin" Then
+strSQL="UPDATE tblAdmin SET adminFirstName='"& antiSqlInjection(Request.Form("firstName")) &"', adminLastName='"& antiSqlInjection(Request.Form("lastName")) &"', adminTelephone='"& antiSqlInjection(Request.Form("telephone")) &"' Where adminID="& clng(Request.Querystring("adminID")) &""
+
+Connect.Execute(strSQL)
+
+' Stänger DB koppling
+Connect.Close
+Set Connect = Nothing
+
+Session("FelMess")="<span class='red'>Administratören uppdaterades!</span>"
+ 
+Refer = request.servervariables("http_referer")	   
+Response.Redirect(Refer)
+End If
+%>

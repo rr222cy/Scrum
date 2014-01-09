@@ -38,7 +38,7 @@ End If
                         </tfoot>
                         <tbody>
 <%
-strSQL="SELECT * FROM tblUsers order by rand() LIMIT 5"
+strSQL="SELECT * FROM tblUsers order by rand() LIMIT 6"
 Set objRS = Connect.Execute(strSQL)
 
 If not objRS.EOF then
