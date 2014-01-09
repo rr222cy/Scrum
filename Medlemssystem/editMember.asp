@@ -45,7 +45,7 @@ Set objRS = Connect.Execute(strSQL)
 %>
                     <form name="MemberEditForm" action="editMember.asp?page=runUpdateMember&userID=<%=objRS("userID")%>" method="post">
                     <fieldset>
-                        <legend>Redigera <%=objRS("userFirstName")%> <%=objRS("userLastName")%>:s uppgifter</legend>
+                        <legend>Redigera <%=objRS("userFirstName")%>&nbsp;<%=objRS("userLastName")%>:s uppgifter</legend>
                         <label class="leftalign" for="userID">MedlemsID:</label><br />
                             <input type="text" name="userID" id="userID" size="10" value="<%=objRS("userID")%>" disabled required><br />
                         <label class="leftalign" for="firstName">Förnamn:</label><br />
