@@ -29,7 +29,7 @@
                         <li><a href="editAdmin.asp?page=newAdmin">Lägg till administratör</a></li>
                         <li><a href="logout.asp">Logga ut</a></li>
                             
-                        <% ElseIf Request.QueryString("page")="searchMember" Then %>
+                        <% ElseIf Request.QueryString("page")="searchMember" OR Request.QueryString("page")="runSearchMember" Then %>
                         <li><a href="overview.asp?page=overview">Översikt</a></li>
                         <li><a href="editMember.asp?page=newMember">Lägg till medlem</a></li>
                         <li><a href="allMembers.asp?page=allMembers">Alla medlemmar</a></li>
