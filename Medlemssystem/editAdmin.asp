@@ -50,7 +50,7 @@ Do until objRS.EOF
                                 <td><%=objRS("adminLastName")%></td>
                                 <td><%=objRS("adminTelephone")%></td>
                                 <td class="tableCenter">
-                                    <a class="deleteLink" href="editAdmin.asp?page=runDeleteMember&adminID=<%=objRS("adminID")%>"><img src="pics/rubbish-bin.png" border="0" width="16" height="16" alt="Papperskorg" /></a>
+                                    <a class="deleteLink" href="editAdmin.asp?page=runDeleteAdmin&adminID=<%=objRS("adminID")%>"><img src="pics/rubbish-bin.png" border="0" width="16" height="16" alt="Papperskorg" /></a>
                                     <a href="editAdmin.asp?page=editAdmin&adminID=<%=objRS("adminID")%>"><img src="pics/edit-file-icon.png" border="0" width="16" height="16" alt="Papper och penna" /></a>
                                 </td>
                             </tr>
@@ -130,6 +130,19 @@ Set Connect = Nothing
 
 Session("FelMess")="<span class='red'>Administratören uppdaterades!</span>"
  
+Refer = request.servervariables("http_referer")	   
+Response.Redirect(Refer)
+   
+' Kod för att radera administratör ur registret
+ElseIf Request.Querystring("page")="runDeleteAdmin" Then
+
+strSQL="DELETE FROM tblAdmin Where adminID="& clng(Request.Querystring("adminID")) &""
+Connect.Execute(strSQL)
+
+' Stänger DB koppling
+Connect.Close
+Set Connect = Nothing 
+
 Refer = request.servervariables("http_referer")	   
 Response.Redirect(Refer)
 End If
