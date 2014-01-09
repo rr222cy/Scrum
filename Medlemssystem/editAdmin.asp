@@ -98,6 +98,7 @@ objRS.Close : Set objRS = Nothing
 strSQL="SELECT * FROM tblAdmin Where adminID="& clng(Request.Querystring("adminID")) &""
 Set objRS = Connect.Execute(strSQL)
 %>
+                    <div class="standardFormDiv">
                     <form name="AdminEditForm" action="editAdmin.asp?page=runUpdateAdmin&adminID=<%=objRS("adminID")%>" method="post">
                     <fieldset>
                         <legend>Redigera <%=objRS("adminFirstName")%>&nbsp;<%=objRS("adminLastName")%>:s uppgifter</legend>
@@ -118,6 +119,7 @@ Set objRS = Connect.Execute(strSQL)
                     <input type="submit" name="Submit" id="Submit" value="Uppdatera">
                     </form>
                     <p><%=Session("felmess")%></p>
+                    </div>
                     <% Session("FelMess")="" %>
                     <% End If %>
                         
