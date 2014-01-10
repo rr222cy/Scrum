@@ -20,7 +20,7 @@ End If
                     <% If Request.QueryString("page")="newMember" Then %>
                     <h2>Lägg till medlem</h2>
                     <% If Request.QueryString("action")="memberAdded" Then %>
-                    <p class="red">Medlemmen har nu lagts till i registret!</p>
+                    <p class="green">Medlemmen har nu lagts till i registret!</p>
                     <% End If %>
                     <div class="standardFormDiv">
                         <form name="MemberAddForm" action="editMember.asp?page=runAddMember" method="post">
@@ -118,7 +118,7 @@ Connect.Execute(strSQL)
 Connect.Close
 Set Connect = Nothing
 
-Session("FelMess")="<span class='red'>Medlemmen uppdaterades!</span>"
+Session("FelMess")="<span class='green'>Medlemmen uppdaterades!</span>"
  
 Refer = request.servervariables("http_referer")	   
 Response.Redirect(Refer)

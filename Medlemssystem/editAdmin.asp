@@ -69,7 +69,7 @@ objRS.Close : Set objRS = Nothing
                 <section class="leftFloat">
                     <h2>Lägg till administratör</h2>
                     <% If Request.QueryString("action")="adminAdded" Then %>
-                    <p class="red">Administratören har nu lagts till i registret!</p>
+                    <p class="green">Administratören har nu lagts till i registret!</p>
                     <% End If %>
                     <div class="standardFormDiv">
                         <form name="AdminAddForm" action="editAdmin.asp?page=runAddAdmin" method="post">
@@ -136,10 +136,19 @@ Set objRS = Connect.Execute(strSQL)
     </body>
 </html>
 <%
-' Kod för att lägga till medlem.
+' Kod för att lägga till administratör.
 If Request.Querystring("page")="runAddAdmin" Then
 
 ' Skickar in det som angetts i formuläret i databasen.
+
+strSQL2="SELECT adminEmail FROM tblAdmin where adminEmail='"& Request.Form("email") &"'"
+Set objRS2 = Connect.Execute(strSQL2)
+If Not objRS2.EOF Then
+Session("FelMess")="<span class='red'>Administratören finns redan!</span>"
+ 
+Refer = request.servervariables("http_referer")	   
+Response.Redirect(Refer)
+Else   
    
 If Request.Form("firstName")="" OR Request.Form("lastName")="" OR Request.Form("telephone")="" OR Request.Form("email")="" OR Request.Form("password")=""Then
 Session("FelMess")="<span class='red'>Du fyllde inte i alla fält!</span>"
@@ -157,9 +166,27 @@ Set Connect = Nothing
 
 Response.Redirect("?page=newAdmin&action=adminAdded")   
 End If
+End If
  
 ' Kod för att uppdatera administratörsuppgifter
 ElseIf Request.Querystring("page")="runUpdateAdmin" Then
+   
+strSQL2="SELECT adminEmail FROM tblAdmin where adminEmail='"& Request.Form("email") &"'"
+Set objRS2 = Connect.Execute(strSQL2)
+If Not objRS2.EOF Then
+Session("FelMess")="<span class='red'>Administratören finns redan!</span>"
+ 
+Refer = request.servervariables("http_referer")	   
+Response.Redirect(Refer)
+Else
+   
+If Request.Form("firstName")="" OR Request.Form("lastName")="" OR Request.Form("telephone")="" OR Request.Form("email")="" OR Request.Form("password")=""Then
+Session("FelMess")="<span class='red'>Du fyllde inte i alla fält!</span>"
+ 
+Refer = request.servervariables("http_referer")	   
+Response.Redirect(Refer)
+Else
+   
 strSQL="UPDATE tblAdmin SET adminFirstName='"& antiSqlInjection(Request.Form("firstName")) &"', adminLastName='"& antiSqlInjection(Request.Form("lastName")) &"', adminTelephone='"& antiSqlInjection(Request.Form("telephone")) &"', adminEmail='"& antiSqlInjection(Request.Form("email")) &"', adminPassword='"& antiSqlInjection(Request.Form("password")) &"' Where adminID="& clng(Request.Querystring("adminID")) &""
 
 Connect.Execute(strSQL)
@@ -168,10 +195,12 @@ Connect.Execute(strSQL)
 Connect.Close
 Set Connect = Nothing
 
-Session("FelMess")="<span class='red'>Administratören uppdaterades!</span>"
+Session("FelMess")="<span class='green'>Administratören uppdaterades!</span>"
  
 Refer = request.servervariables("http_referer")	   
 Response.Redirect(Refer)
+End If
+End If
    
 ' Kod för att radera administratör ur registret
 ElseIf Request.Querystring("page")="runDeleteAdmin" Then
