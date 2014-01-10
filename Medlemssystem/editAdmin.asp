@@ -49,11 +49,11 @@ Do until objRS.EOF
                                 <td rowspan="1" class="tableCenter"><a href="adminSpecs.asp?page=showSpecs&userID=<%=objRS("adminID")%>"><%=objRS("adminID")%></a></td>
                                 <td><%=objRS("adminFirstName")%></td>
                                 <td><%=objRS("adminLastName")%></td>
-                                <td><%=objRS("adminTelephone")%></td>
+                                <td><a href="tel:+<%=objRS("adminTelephone")%>"><%=objRS("adminTelephone")%></a></td>
                                 <td><a href="mailto:<%=objRS("adminEmail")%>"><%=objRS("adminEmail")%></a></td>
                                 <td class="tableCenter">
-                                    <a class="deleteLink" href="editAdmin.asp?page=runDeleteAdmin&adminID=<%=objRS("adminID")%>"><img src="pics/rubbish-bin.png" border="0" width="16" height="16" alt="Papperskorg" /></a>
-                                    <a href="editAdmin.asp?page=editAdmin&adminID=<%=objRS("adminID")%>"><img src="pics/edit-file-icon.png" border="0" width="16" height="16" alt="Papper och penna" /></a>
+                                    <a class="deleteLink" href="editAdmin.asp?page=runDeleteAdmin&adminID=<%=objRS("adminID")%>" title="Radera administratör"><img src="pics/rubbish-bin.png" border="0" width="16" height="16" alt="Papperskorg" /></a>
+                                    <a href="editAdmin.asp?page=editAdmin&adminID=<%=objRS("adminID")%>" title="Redigera uppgifter"><img src="pics/edit-file-icon.png" border="0" width="16" height="16" alt="Papper och penna" /></a>
                                 </td>
                             </tr>
 <%
