@@ -22,13 +22,13 @@ End If
                     <p>Nedan listas alla administratörer som finns i registret, du kan snabbt lägga till eller uppdatera en administratör.</p>
                 </section>
                 <section class="leftFloat">
-                    <table class="registerList" width="650" border="1">
+                    <table class="registerList">
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Förnamn</th>
                                 <th>Efternamn</th>
-                                <th>Telefonnummer</th>
+                                <th>Telefon</th>
                                 <th>E-post</th>
                             </tr>
                         </thead>

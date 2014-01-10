@@ -21,13 +21,13 @@ End If
                     <p>Nedan listas alla registrerade medlemmar i fallande ordning utefter medlemmens ID-nummer.</p>
                 </section>
                 <section class="leftFloat">
-                    <table class="registerList" width="650" border="1">
+                    <table class="registerList">
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Förnamn</th>
                                 <th>Efternamn</th>
-                                <th>Telefonnummer</th>
+                                <th>Telefon</th>
                             </tr>
                         </thead>
                         <tfoot>
@@ -47,7 +47,7 @@ Do until objRS.EOF
                                 <td rowspan="1" class="tableCenter"><a href="memberSpecs.asp?page=showSpecs&userID=<%=objRS("userID")%>"><%=objRS("userID")%></a></td>
                                 <td><%=objRS("userFirstName")%></td>
                                 <td><%=objRS("userLastName")%></td>
-                                <td><a href="tel:+<%=objRS("userTelephone")%>"><%=objRS("userTelephone")%></a></td>
+                                <td><a href="tel:<%=objRS("userTelephone")%>"><%=objRS("userTelephone")%></a></td>
                                 <td class="tableCenter">
                                     <a class="deleteLink" href="editMember.asp?page=runDeleteMember&userID=<%=objRS("userID")%>" title="Radera medlem"><img src="pics/rubbish-bin.png" border="0" width="16" height="16" alt="Papperskorg" /></a>
                                     <a href="editMember.asp?page=editMember&userID=<%=objRS("userID")%>" title="Uppdatera medlem"><img src="pics/edit-file-icon.png" border="0" width="16" height="16" alt="Papper och penna" /></a>

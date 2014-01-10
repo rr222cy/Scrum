@@ -47,13 +47,13 @@ main {
 }
 
 section {
-    max-width: 660px;
+    max-width: 640px;
     margin: 0px auto;
     padding: 3% 2% 4% 3%;
 }
 
 nav {
-    width: 200px;
+    width: 180px;
     float: right;
     padding: 3% 2% 4% 3%;
 }
@@ -222,6 +222,11 @@ th, thead, tfoot
 
 .tableCenter {
     text-align: center;
+}
+
+.registerList {
+    width: 640px;
+    border: 1px solid;
 }
 
 .registerList td {
