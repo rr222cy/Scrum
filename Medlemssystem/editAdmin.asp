@@ -76,16 +76,16 @@ objRS.Close : Set objRS = Nothing
                             <fieldset>
                                 <legend>Lägg till administratör</legend>
                                 <label class="leftalign" for="firstName">Förnamn:</label><br />
-                                    <input type="text" name="firstName" id="firstName"  required><br />
+                                    <input type="text" name="firstName" id="firstName"><br />
                                 <label class="leftalign" for="lastName">Efternamn:</label><br />
-                                    <input type="text" name="lastName" id="lastName"  required><br />
+                                    <input type="text" name="lastName" id="lastName" required><br />
                                 <label class="leftalign" for="telephone">Telefonnummer:</label><br />
-                                    <input type="tel" name="telephone" id="telephone"  required>
+                                    <input type="tel" name="telephone" id="telephone" required>
                                 <p>&nbsp;</p>
                                 <label class="leftalign" for="email">E-post:</label><br />
                                     <input type="email" name="email" id="email"  required><br />
                                 <label class="leftalign" for="password">Lösenord:</label><br />
-                                    <input type="password" name="password" id="password"  required><br />
+                                    <input type="password" name="password" id="password" required><br />
                             </fieldset>                                                    
                             <input type="submit" name="Submit" id="Submit" value="Lägg till administratör">
                         </form>
@@ -140,6 +140,14 @@ Set objRS = Connect.Execute(strSQL)
 If Request.Querystring("page")="runAddAdmin" Then
 
 ' Skickar in det som angetts i formuläret i databasen.
+   
+If Request.Form("firstName")="" OR Request.Form("lastName")="" OR Request.Form("telephone")="" OR Request.Form("email")="" OR Request.Form("password")=""Then
+Session("FelMess")="<span class='red'>Du fyllde inte i alla fält!</span>"
+ 
+Refer = request.servervariables("http_referer")	   
+Response.Redirect(Refer)
+Else
+   
 strSQL="INSERT INTO tblAdmin(adminFirstName, adminLastName, adminTelephone, adminEmail, adminPassword) VALUES('"& antiSqlInjection(Request.Form("firstName")) &"', '"& antiSqlInjection(Request.Form("lastName")) &"', '"& antiSqlInjection(Request.Form("telephone")) &"' , '"& antiSqlInjection(Request.Form("email")) &"' , '"& antiSqlInjection(Request.Form("password")) &"')"
 Connect.Execute(strSQL)
 
@@ -148,7 +156,8 @@ Connect.Close
 Set Connect = Nothing
 
 Response.Redirect("?page=newAdmin&action=adminAdded")   
-   
+End If
+ 
 ' Kod för att uppdatera administratörsuppgifter
 ElseIf Request.Querystring("page")="runUpdateAdmin" Then
 strSQL="UPDATE tblAdmin SET adminFirstName='"& antiSqlInjection(Request.Form("firstName")) &"', adminLastName='"& antiSqlInjection(Request.Form("lastName")) &"', adminTelephone='"& antiSqlInjection(Request.Form("telephone")) &"', adminEmail='"& antiSqlInjection(Request.Form("email")) &"', adminPassword='"& antiSqlInjection(Request.Form("password")) &"' Where adminID="& clng(Request.Querystring("adminID")) &""

@@ -27,11 +27,11 @@ End If
                             <fieldset>
                                 <legend>Lägg till medlem</legend>
                                 <label class="leftalign" for="firstName">Förnamn:</label><br />
-                                    <input type="text" name="firstName" id="firstName"  required><br />
+                                    <input type="text" name="firstName" id="firstName" required><br />
                                 <label class="leftalign" for="lastName">Efternamn:</label><br />
-                                    <input type="text" name="lastName" id="lastName"  required><br />
+                                    <input type="text" name="lastName" id="lastName" required><br />
                                 <label class="leftalign" for="telephone">Telefonnummer:</label><br />
-                                    <input type="tel" name="telephone" id="telephone"><br />
+                                    <input type="tel" name="telephone" id="telephone" required><br />
                             </fieldset>                                                    
                             <input type="submit" name="Submit" id="Submit" value="Lägg till medlem">
                         </form>
@@ -57,7 +57,7 @@ Set objRS = Connect.Execute(strSQL)
                             <label class="leftalign" for="lastName">Efternamn:</label><br />
                                 <input type="text" name="lastName" id="lastName" size="45" value="<%=objRS("userLastName")%>" required><br />
                             <label class="leftalign" for="telephone">Telefonnummer:</label><br />
-                                <input type="tel" name="telephone" id="telephone" size="45" value="<%=objRS("userTelephone")%>" required><br />
+                                <input type="tel" name="telephone" id="telephone" size="45" value="<%=objRS("userTelephone")%>" ><br />
                         </fieldset>                                                    
                         <input type="submit" name="Submit" id="Submit" value="Uppdatera">
                         </form>
@@ -80,6 +80,14 @@ Set objRS = Connect.Execute(strSQL)
 ' Kod för att lägga till medlem.
 If Request.Querystring("page")="runAddMember" Then
 
+' Kollar så alla fälten är ifyllda
+If Request.Form("firstName")="" OR Request.Form("lastName")="" OR Request.Form("telephone")="" Then
+Session("FelMess")="<span class='red'>Du fyllde inte i alla fält!</span>"
+ 
+Refer = request.servervariables("http_referer")	   
+Response.Redirect(Refer)
+Else
+ 
 ' Skickar in det som angetts i formuläret i databasen.
 strSQL="INSERT INTO tblUsers(userFirstName, userLastName, userTelephone) VALUES('"& antiSqlInjection(Request.Form("firstName")) &"', '"& antiSqlInjection(Request.Form("lastName")) &"', '"& antiSqlInjection(Request.Form("telephone")) &"')"
 Connect.Execute(strSQL)
@@ -89,10 +97,19 @@ Connect.Close
 Set Connect = Nothing
 
 Response.Redirect("?page=newMember&action=memberAdded")
-
+End If
 
 ' Kod för att uppdatera medlemsuppgifter
 ElseIf Request.Querystring("page")="runUpdateMember" Then
+
+' Kollar så alla fälten är ifyllda
+If Request.Form("firstName")="" OR Request.Form("lastName")="" OR Request.Form("telephone")="" Then
+Session("FelMess")="<span class='red'>Du fyllde inte i alla fält!</span>"
+
+Refer = request.servervariables("http_referer")	   
+Response.Redirect(Refer)
+Else
+   
 strSQL="UPDATE tblUsers SET userFirstName='"& antiSqlInjection(Request.Form("firstName")) &"', userLastName='"& antiSqlInjection(Request.Form("lastName")) &"', userTelephone='"& antiSqlInjection(Request.Form("telephone")) &"' Where userID="& clng(Request.Querystring("userID")) &""
 
 Connect.Execute(strSQL)
@@ -105,7 +122,8 @@ Session("FelMess")="<span class='red'>Medlemmen uppdaterades!</span>"
  
 Refer = request.servervariables("http_referer")	   
 Response.Redirect(Refer)
-   
+End If
+                                     
 ' Kod för att radera medlem ur registret
 ElseIf Request.Querystring("page")="runDeleteMember" Then
 
