@@ -22,7 +22,7 @@ End If
                     <p>Nedan listas alla administratörer som finns i registret, du kan snabbt lägga till eller uppdatera en administratör.</p>
                 </section>
                 <section class="leftFloat">
-                    <table width="650" border="1">
+                    <table class="registerList" width="650" border="1">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -89,6 +89,9 @@ objRS.Close : Set objRS = Nothing
                             </fieldset>                                                    
                             <input type="submit" name="Submit" id="Submit" value="Lägg till administratör">
                         </form>
+                        <p class="tip">* Alla fält måste fyllas i.</p>
+                        <p><%=Session("felmess")%></p>
+                        <% Session("FelMess")="" %>
                     </div>
                 </section>        
 <% ElseIf Request.QueryString("page")="editAdmin" Then %>
@@ -118,9 +121,10 @@ Set objRS = Connect.Execute(strSQL)
                     </fieldset>                                                    
                     <input type="submit" name="Submit" id="Submit" value="Uppdatera">
                     </form>
+                    <p class="tip">* Alla fält måste fyllas i.</p>
                     <p><%=Session("felmess")%></p>
-                    </div>
                     <% Session("FelMess")="" %>
+                    </div>
                     <% End If %>
                         
                 </section>

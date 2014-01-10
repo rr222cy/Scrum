@@ -95,6 +95,14 @@ h3 {
     color: red;
 }
 
+.tip {
+    font-size: 8pt;
+    margin-top: 10px;
+}
+
+.breakLines {
+    word-break: break-all;
+}
 
 /* Link settings */
 
@@ -201,6 +209,7 @@ table, th, td
     border: 1px solid;
     border-color: #353535;
     padding: 4px;
+    min-width: 40px;
 }
 
 th, thead, tfoot 
@@ -213,6 +222,10 @@ th, thead, tfoot
 
 .tableCenter {
     text-align: center;
+}
+
+.registerList td {
+    word-break: break-all;
 }
 
 

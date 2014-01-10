@@ -22,7 +22,7 @@ End If
                     Medlemshanteraren 1.0.</p>
                 </section>
                 <section class="leftFloat">
-                    <table width="650" border="1">
+                    <table class="registerList" width="650" border="1">
                         <thead>
                             <tr>
                                 <th>ID</th>

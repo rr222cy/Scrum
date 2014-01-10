@@ -21,7 +21,7 @@ End If
                     <p>Nedan listas alla registrerade medlemmar i fallande ordning utefter medlemmens ID-nummer.</p>
                 </section>
                 <section class="leftFloat">
-                    <table width="650" border="1">
+                    <table class="registerList" width="650" border="1">
                         <thead>
                             <tr>
                                 <th>ID</th>

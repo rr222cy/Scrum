@@ -31,10 +31,13 @@ End If
                                 <label class="leftalign" for="lastName">Efternamn:</label><br />
                                     <input type="text" name="lastName" id="lastName"  required><br />
                                 <label class="leftalign" for="telephone">Telefonnummer:</label><br />
-                                    <input type="tel" name="telephone" id="telephone"  required><br />
+                                    <input type="tel" name="telephone" id="telephone"><br />
                             </fieldset>                                                    
                             <input type="submit" name="Submit" id="Submit" value="Lägg till medlem">
                         </form>
+                        <p class="tip">* Alla fält måste fyllas i.</p>
+                        <p><%=Session("felmess")%></p>
+                        <% Session("FelMess")="" %>
                     </div>
                         
                     <% ElseIf Request.QueryString("page")="editMember" Then %>
@@ -58,6 +61,7 @@ Set objRS = Connect.Execute(strSQL)
                         </fieldset>                                                    
                         <input type="submit" name="Submit" id="Submit" value="Uppdatera">
                         </form>
+                        <p class="tip">* Alla fält måste fyllas i.</p>
                         <p><%=Session("felmess")%></p>
                     </div>
                     <% Session("FelMess")="" %>
