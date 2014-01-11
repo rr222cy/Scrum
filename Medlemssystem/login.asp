@@ -8,7 +8,7 @@
    adminEmail = antiSqlInjection(request.form("email"))
    'adminPassword = sha256(antiSqlInjection(request.form("password")))
     '
-   adminPassword = antiSqlInjection(request.form("password"))
+   adminPassword = sha256(antiSqlInjection(request.form("password")))
   
    strSQL="SELECT * From tblAdmin where adminEmail='"& adminEmail &"' AND adminPassword='"& adminPassword &"'"
    Set objRS = Connect.Execute(strSQL)
